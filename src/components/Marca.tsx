@@ -7,7 +7,7 @@ export function Marca() {
     <section id="marca" className="overflow-hidden py-16 md:py-28">
       <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <Reveal className="relative min-h-[360px]">
-          <div className="relative h-[56vw] min-h-[320px] max-h-[580px] overflow-hidden md:h-[66vh] md:rounded-r-[4rem]">
+          <div className="relative h-[70vw] min-h-[260px] max-h-[580px] w-full overflow-hidden md:h-[66vh] md:rounded-r-[4rem]">
             <Photo src="/fotos/loja.jpg" alt="Ambiente da Joias Gheller" className="object-cover" sizes="(min-width:1024px) 55vw, 100vw" />
           </div>
           <div
@@ -20,7 +20,7 @@ export function Marca() {
 
         <Reveal delay={120} className="page-pad pb-8 lg:pl-2">
           <p className="mb-4 text-[0.7rem] tracking-[0.32em] text-[#c9a090] uppercase">A marca</p>
-          <h2 className="font-display text-[clamp(2.3rem,5vw,4.2rem)] leading-[0.92]">
+          <h2 className="font-display text-[clamp(2rem,8vw,4.2rem)] leading-[1.05] md:leading-[0.92]">
             27 anos de fábrica e olhar de mulher.
           </h2>
           <p className="mt-6 max-w-md leading-relaxed text-[#1c1512]/72">

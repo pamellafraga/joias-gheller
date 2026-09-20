@@ -18,13 +18,22 @@ const PAGE_SIZE = 16;
 const LOAD_MORE = 8;
 const ALL = catalog as CatalogItem[];
 
+function formatBRL(value: number) {
+  const [reais, cents] = value.toFixed(2).split(".");
+  const grouped = reais.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return `R$ ${grouped},${cents}`;
+}
+
+function formatCount(value: number) {
+  return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 function parcelLabel(priceLabel: string) {
   const n = Number(priceLabel.replace(/[^\d,]/g, "").replace(",", "."));
   if (!Number.isFinite(n)) return "À vista";
   const parcels = Math.min(6, Math.floor(n / 40));
   if (parcels < 2) return "À vista no Pix ou cartão";
-  const each = (n / parcels).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-  return `ou ${parcels}x de ${each} sem juros`;
+  return `ou ${parcels}x de ${formatBRL(n / parcels)} sem juros`;
 }
 
 export function Destaques() {
@@ -50,19 +59,19 @@ export function Destaques() {
 
   return (
     <section id="destaques" className="border-y border-[#1c1512]/06 bg-white py-16 md:py-24">
-      <div className="page-pad">
+      <div className="page-pad min-w-0">
         <div>
           <p className="mb-3 text-[0.68rem] tracking-[0.28em] text-[#8a7468] uppercase">Catálogo</p>
-          <h2 className="font-display text-[clamp(2.1rem,4.5vw,3.6rem)] leading-[0.95] text-[#1c1512]">
+          <h2 className="font-display text-[clamp(1.85rem,8vw,3.6rem)] leading-[1.05] text-[#1c1512] md:leading-[0.95]">
             Todos os produtos
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-[#8a7468]">
-            {ALL.length.toLocaleString("pt-BR")} peças Gheller — consulte disponibilidade e peça pelo WhatsApp.
+            {formatCount(ALL.length)} peças Gheller — consulte disponibilidade e peça pelo WhatsApp.
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-8 flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 max-w-full gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {filters.map((item) => {
               const active = filter === item;
               return (
@@ -102,7 +111,7 @@ export function Destaques() {
           Exibindo {items.length} de {filtered.length} {filtered.length === 1 ? "produto" : "produtos"}
         </p>
 
-        <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
+        <div className="mt-8 grid min-w-0 grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
           {items.map((product) => (
             <a
               key={product.id}
@@ -112,21 +121,21 @@ export function Destaques() {
               className="product-card group flex h-full flex-col"
             >
               <div className="relative aspect-square overflow-hidden bg-[#f7f5f2]">
-                <span className="absolute top-3 left-3 z-10 max-w-[70%] truncate bg-white/90 px-2.5 py-1 text-[0.58rem] tracking-[0.14em] text-[#1c1512] uppercase backdrop-blur-sm">
+                <span className="absolute top-2 left-2 z-10 max-w-[75%] truncate bg-white/90 px-2 py-1 text-[0.52rem] tracking-[0.12em] text-[#1c1512] uppercase backdrop-blur-sm md:top-3 md:left-3 md:px-2.5 md:text-[0.58rem] md:tracking-[0.14em]">
                   {product.tag}
                 </span>
                 <Photo
                   src={product.src}
                   alt={product.title}
-                  className="photo object-contain p-6 transition duration-700 ease-out group-hover:scale-[1.04] md:p-8"
+                  className="photo object-contain p-3 transition duration-700 ease-out group-hover:scale-[1.04] md:p-8"
                   sizes="(min-width:1024px) 22vw, (min-width:768px) 30vw, 48vw"
                 />
-                <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-[#1c1512] py-3 text-center text-[0.62rem] tracking-[0.2em] text-white uppercase transition duration-500 group-hover:translate-y-0">
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 hidden translate-y-full bg-[#1c1512] py-3 text-center text-[0.62rem] tracking-[0.2em] text-white uppercase transition duration-500 group-hover:translate-y-0 md:block">
                   Pedir no WhatsApp
                 </span>
               </div>
-              <div className="flex flex-1 flex-col pt-4">
-                <h3 className="text-[0.82rem] leading-snug font-medium tracking-[0.02em] text-[#1c1512] md:text-[0.88rem]">
+              <div className="flex min-w-0 flex-1 flex-col pt-3 md:pt-4">
+                <h3 className="text-[0.78rem] leading-snug font-medium tracking-[0.02em] break-words text-[#1c1512] md:text-[0.88rem]">
                   {product.title}
                 </h3>
                 <p className="mt-3 text-[0.95rem] font-semibold tracking-tight text-[#1c1512] md:text-[1.02rem]">
@@ -147,7 +156,7 @@ export function Destaques() {
             <button
               type="button"
               onClick={() => setVisible((v) => v + LOAD_MORE)}
-              className="border border-[#1c1512] px-8 py-3.5 text-[0.68rem] tracking-[0.18em] text-[#1c1512] uppercase transition hover:bg-[#1c1512] hover:text-white"
+              className="w-full border border-[#1c1512] px-6 py-3.5 text-center text-[0.68rem] tracking-[0.14em] text-[#1c1512] uppercase transition hover:bg-[#1c1512] hover:text-white sm:w-auto sm:px-8 sm:tracking-[0.18em]"
             >
               Carregar mais ({filtered.length - visible} restantes)
             </button>

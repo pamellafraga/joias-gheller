@@ -51,7 +51,7 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-[70] pt-[env(safe-area-inset-top)] transition-all duration-500 ${
           hidden ? "-translate-y-full" : "translate-y-0"
         } ${
           scrolled || open
@@ -59,8 +59,8 @@ export function Navbar() {
             : "bg-transparent text-white"
         }`}
       >
-        <div className="page-pad flex h-[4.5rem] items-center justify-between md:h-[5rem]">
-          <a href="#inicio" className="font-brand text-[1.85rem] md:text-[2.1rem]" onClick={() => setOpen(false)}>
+        <div className="page-pad flex h-[4.25rem] items-center justify-between md:h-[5rem]">
+          <a href="#inicio" className="font-brand text-[1.65rem] md:text-[2.1rem]" onClick={() => setOpen(false)}>
             gheller
           </a>
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
@@ -103,13 +103,18 @@ export function Navbar() {
       </header>
 
       <div
-        className={`fixed inset-0 z-40 bg-[#1c1512] px-8 pt-28 text-[#f6f0ea] transition-all duration-500 lg:hidden ${
+        className={`fixed inset-0 z-[60] overflow-y-auto bg-[#1c1512] px-6 pt-[calc(6.5rem+env(safe-area-inset-top))] pb-[calc(2rem+env(safe-area-inset-bottom))] text-[#f6f0ea] transition-all duration-500 lg:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        <div className="flex flex-col gap-5">
+        <div className="flex min-w-0 flex-col gap-5">
           {NAV.map((item) => (
-            <a key={item.href} href={item.href} className="font-display text-5xl italic" onClick={() => setOpen(false)}>
+            <a
+              key={item.href}
+              href={item.href}
+              className="font-display text-[clamp(2rem,10vw,3rem)] leading-tight italic"
+              onClick={() => setOpen(false)}
+            >
               {item.label}
             </a>
           ))}

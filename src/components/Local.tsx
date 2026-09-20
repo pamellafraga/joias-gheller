@@ -7,7 +7,7 @@ export function Local() {
       <div className="page-pad grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <p className="mb-4 text-[0.7rem] tracking-[0.32em] text-[#c9a090] uppercase">Loja</p>
-          <h2 className="font-display text-[clamp(2.3rem,5vw,4.4rem)] leading-[0.9]">Alberto Bins, 452.</h2>
+          <h2 className="font-display text-[clamp(2rem,8vw,4.4rem)] leading-[1.05] md:leading-[0.9]">Alberto Bins, 452.</h2>
           <p className="mt-5 text-[#1c1512]/72">{SITE.address.full}</p>
           <dl className="mt-8 space-y-5 text-sm">
             <div>
@@ -23,12 +23,12 @@ export function Local() {
               <dd className="mt-1">Consulte descontos para compras acima de 30 peças.</dd>
             </div>
           </dl>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={SITE.maps}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-[#1c1512]/15 px-5 py-3 text-[0.68rem] tracking-[0.16em] uppercase transition hover:bg-[#1c1512] hover:text-white"
+              className="rounded-full border border-[#1c1512]/15 px-5 py-3 text-center text-[0.68rem] tracking-[0.16em] uppercase transition hover:bg-[#1c1512] hover:text-white"
             >
               Como chegar
             </a>
@@ -36,7 +36,7 @@ export function Local() {
               href={SITE.instagram}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-[#1c1512]/15 px-5 py-3 text-[0.68rem] tracking-[0.16em] uppercase transition hover:bg-[#1c1512] hover:text-white"
+              className="rounded-full border border-[#1c1512]/15 px-5 py-3 text-center text-[0.68rem] tracking-[0.16em] uppercase transition hover:bg-[#1c1512] hover:text-white"
             >
               {SITE.instagramHandle}
             </a>
@@ -44,7 +44,7 @@ export function Local() {
               href={SITE.whatsapp}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-[#1c1512]/15 px-5 py-3 text-[0.68rem] tracking-[0.16em] uppercase transition hover:bg-[#1c1512] hover:text-white"
+              className="rounded-full border border-[#1c1512]/15 px-5 py-3 text-center text-[0.68rem] tracking-[0.16em] uppercase transition hover:bg-[#1c1512] hover:text-white"
             >
               WhatsApp
             </a>

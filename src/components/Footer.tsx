@@ -4,9 +4,9 @@ export function Footer() {
   return (
     <footer className="pb-5">
       <div className="page-pad flex flex-col gap-3 border-t border-[#1c1512]/10 pt-5 text-xs text-[#8a7468] sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
           <strong className="font-brand text-2xl text-[#1c1512]">gheller</strong>
-          <p className="whitespace-nowrap">
+          <p className="max-w-full">
             {SITE.fullName} · {SITE.address.neighborhood} · desenvolvido por{" "}
             <a
               href="https://www.xpresssolutions.com.br/"
